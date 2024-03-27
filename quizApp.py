@@ -70,7 +70,7 @@ def boucle():
     """
     Fonction pour lancer le quizz
     """
-
+    
     # Initialisation du score
     score = 0
 
@@ -103,6 +103,12 @@ def boucle():
 
     # Affichage du score final
     print("Vous avez eu une note de ", score * 100 / 100, " %")
+    continuerOuNon=input("Tapez latouche c si vous voulez continuer avec le jeux ou taper n'importe quel autre touche si vous voulez quitter")
+    if continuerOuNon=="c":
+        boucle()
+    else:
+        print("Mérçi d'avoir jouer, a plus tard")
+        
 
 # Lancement du quizz
 boucle()
