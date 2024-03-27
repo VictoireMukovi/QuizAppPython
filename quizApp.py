@@ -43,7 +43,7 @@ def poser_question(question,r1,r2,r3,r4,bonne_reponse):
     else:
         return False
 
-'''score =0     
+score =0     
 def boucle():
     compeur=0
     global score
@@ -57,7 +57,7 @@ def boucle():
        compeur+=1
     print("Vous avez eu une note de ",score*100/100," %")
 
-boucle()'''
+boucle()
 
 
 
