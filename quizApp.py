@@ -1,6 +1,13 @@
+
+# Importation du module random pour générer des questions aléatoires
 import random
 
-tableauDesQuestions=[
+# Définition du tableau des questions
+# Chaque question est un élément du tableau, et chaque élément est lui-même un tableau de 6 éléments:
+# - La question
+# - 4 réponses possibles
+# - La lettre de la bonne réponse
+tableauDesQuestions = [
     ["En quel savan nous dévons le mérité d'avoir découvert la loi d'inertie ","Jean Paul sartre","Archimede","Gandhi","Socrate","b"],
     ["Parmis ces gens l'un n'est pas parmis les 12 disciples  de Jésus","Mathieu","Paul","Simon Pierre","Phillipe","b"],
     ["Quel est la langue officiel de l'Espagne ","Mandarin","Anglais","Français","Spanish","d"],
@@ -28,43 +35,74 @@ tableauDesQuestions=[
     ["Poutine est le président de quel pays ","France","Chine","Ukraine","Irak","e"],
     ["En grec quel est le sens du mot église (Eclésia) ","garde hors de...","quité babylonne","Maison du Seigneur","Temple Bénie","a"]
     
+    # ... (les autres questions)
 ]
 
+# Fonction pour poser une question
+# Cette fonction prend en paramètre la question, les 4 réponses possibles et la lettre de la bonne réponse
+# Elle affiche la question et les réponses possibles, demande à l'utilisateur de choisir une réponse
+# et retourne True si la réponse est correcte, False sinon
+def poser_question(question, r1, r2, r3, r4, bonne_reponse):
+    """
+    Fonction pour poser une question à l'utilisateur
 
+    Args:
+        question (str): La question à poser
+        r1 (str): La première réponse possible
+        r2 (str): La deuxième réponse possible
+        r3 (str): La troisième réponse possible
+        r4 (str): La quatrième réponse possible
+        bonne_reponse (str): La lettre de la bonne réponse
 
-def poser_question(question,r1,r2,r3,r4,bonne_reponse):
-    
-    print("Question : \n"+question+"\n choissisez la lettre qui corresponde à la bonne réponse \n"+ " a. ",r1,"\n b. ",r2," \n c. ",r3," \n d. ",r4)
-    reponse= input("Votre réponse : ") 
-    if reponse==bonne_reponse:
-        
-        return True
-        
-    else:
-        return False
+    Returns:
+        bool: True si la réponse est correcte, False sinon
+    """
 
-score =0     
+    print("Question : \n" + question + "\n choissisez la lettre qui corresponde à la bonne réponse \n"
+          + " a. " + r1 + "\n b. " + r2 + " \n c. " + r3 + " \n d. " + r4)
+    reponse = input("Votre réponse : ")
+
+    # On compare la réponse de l'utilisateur avec la bonne réponse
+    return reponse.lower() == bonne_reponse.lower()
+
+# Fonction pour lancer le quizz
 def boucle():
-    compeur=0
-    global score
-    while compeur<10:   
-       questionAleatoire=random.randint(0,len(tableauDesQuestions)-1)
-       if poser_question(tableauDesQuestions[questionAleatoire][0],tableauDesQuestions[questionAleatoire][1],tableauDesQuestions[questionAleatoire][2],tableauDesQuestions[questionAleatoire][3],tableauDesQuestions[questionAleatoire][4],tableauDesQuestions[questionAleatoire][5])==True:
-           score+=10
-           print("Bonne réponse !")
-       else:
-           print("Mauvaise réponse !")
-       compeur+=1
-    print("Vous avez eu une note de ",score*100/100," %")
+    """
+    Fonction pour lancer le quizz
+    """
 
+    # Initialisation du score
+    score = 0
+
+    # Boucle sur 10 questions aléatoires
+    compteur = 0
+    while compteur < 10:
+
+        # Génération d'un nombre aléatoire entre 0 et la longueur du tableau des questions
+        questionAleatoire = random.randint(0, len(tableauDesQuestions) - 1)
+
+        # On pose la question à l'utilisateur
+        if poser_question(tableauDesQuestions[questionAleatoire][0],
+                          tableauDesQuestions[questionAleatoire][1],
+                          tableauDesQuestions[questionAleatoire][2],
+                          tableauDesQuestions[questionAleatoire][3],
+                          tableauDesQuestions[questionAleatoire][4],
+                          tableauDesQuestions[questionAleatoire][5]):
+
+            # Incrémentation du score si la réponse est correcte
+            score += 10
+
+            # Affichage d'un message indiquant que la réponse est correcte
+            print("Bonne réponse !")
+        else:
+            # Affichage d'un message indiquant que la réponse est incorrecte
+            print("Mauvaise réponse !")
+
+        # Incrémentation du compteur
+        compteur += 1
+
+    # Affichage du score final
+    print("Vous avez eu une note de ", score * 100 / 100, " %")
+
+# Lancement du quizz
 boucle()
-
-
-
-
-'''poser_question("Quel est la langue officiel de la chine ","Mandarin","Anglais","Français","Chinois","a")
-poser_question("Parmis ces gens l'un n'est pas parmis les 12 disciples  de Jésus","Mathieu","Paul","Simon Pierre","Phillipe","b")
-poser_question("En quel savan nous dévons le mérité d'avoir découvert la loi d'inertie ","Jean Paul sartre","Archimede","Gandhi","Socrate","b")
-'''
-
-    
